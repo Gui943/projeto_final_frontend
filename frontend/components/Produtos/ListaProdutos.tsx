@@ -2,7 +2,8 @@
 import { useState } from 'react'
 import { Produto } from '@/types/produtos'
 import AdicionarEditarProduto from './AdicionarEditarProduto'
-import { createProduto, updateProduto } from '@/app/(system)/produto/actions'
+import { createProduto, updateProduto, deleteProduto } from '@/app/(system)/produto/actions'
+
 
 interface Props {
   produtos: Produto[]
@@ -35,6 +36,12 @@ export default function ListaProdutos({ produtos }: Props) {
     }
   }
 
+  async function handleExcluir(id: number) {
+  if (confirm('Deseja excluir este produto?')) {
+    await deleteProduto(id)
+  }
+}
+
   return (
     <div className="container mt-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
@@ -58,7 +65,7 @@ export default function ListaProdutos({ produtos }: Props) {
               <td>{produto.ativo ? 'Sim' : 'Não'}</td>
               <td>
                 <button className="btn btn-sm btn-warning me-2" onClick={() => abrirParaEditar(produto)}>Editar</button>
-                <button className="btn btn-sm btn-danger">Excluir</button>
+                <button className="btn btn-sm btn-danger" onClick={() => handleExcluir(produto.id)}>Excluir</button>
               </td>
             </tr>
           ))}
