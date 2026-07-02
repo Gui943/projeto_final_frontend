@@ -34,15 +34,20 @@ export default function AdicionarEditarProduto({ produto, onClose, onSalvar }: P
           </div>
           <form onSubmit={handleSubmit}>
             <div className="modal-body d-flex flex-column gap-2">
+              <small className="text-muted">SKU</small>
               <input className="form-control" placeholder="SKU" value={form.codigoSku}
                 onChange={e => setForm({ ...form, codigoSku: e.target.value })} />
-              <input className="form-control" placeholder="Nome *" required value={form.nome}
+              <small className="text-muted">Nome <span className="text-danger">*</span></small>
+              <input className="form-control" placeholder="Nome" required value={form.nome}
                 onChange={e => setForm({ ...form, nome: e.target.value })} />
+              <small className="text-muted">Descrição</small>
               <input className="form-control" placeholder="Descrição" value={form.descricao}
                 onChange={e => setForm({ ...form, descricao: e.target.value })} />
-              <input className="form-control" placeholder="Preço *" type="number" step="0.01" required
+              <small className="text-muted">Preço <span className="text-danger">*</span></small>
+              <input className="form-control" placeholder="Preço" type="number" step="0.01" required
                 value={form.precoUnitario}
                 onChange={e => setForm({ ...form, precoUnitario: Number(e.target.value) })} />
+              <small className="text-muted">Unidade <span className="text-danger">*</span></small>
               <input className="form-control" placeholder="Unidade (ex: UN, M2)" value={form.unidade}
                 onChange={e => setForm({ ...form, unidade: e.target.value })} />
               <div className="form-check">

@@ -34,14 +34,19 @@ export default function AdicionarEditarClientes({ cliente, onClose, onSalvar }: 
           </div>
           <form onSubmit={handleSubmit}>
             <div className="modal-body d-flex flex-column gap-2">
+                <small className="text-muted">Documento</small>
               <input className="form-control" placeholder="Documento" value={form.documento}
                 onChange={e => setForm({ ...form, documento: e.target.value })} />
-              <input className="form-control" placeholder="Nome *" required value={form.nome}
+                <small className="text-muted">Nome <span className="text-danger">*</span></small>
+              <input className="form-control" placeholder="Nome" required value={form.nome}
                 onChange={e => setForm({ ...form, nome: e.target.value })} />
-              <input className="form-control" type="email" placeholder="Email" value={form.email}
+                <small className="text-muted">Email <span className="text-danger">*</span></small>
+              <input className="form-control" type="email" placeholder="Email" required value={form.email}
                 onChange={e => setForm({ ...form, email: e.target.value })} />
+                <small className="text-muted">Telefone</small>
               <input className="form-control" placeholder="Telefone" value={form.telefone}
                 onChange={e => setForm({ ...form, telefone: e.target.value })} />
+                <small className="text-muted">Observações</small>
               <input className="form-control" placeholder="Observações" value={form.observacoes}
                 onChange={e => setForm({ ...form, observacoes: e.target.value })} />
               <div className="form-check">

@@ -50,8 +50,8 @@ export default function AdicionarOrcamentos({ orcamento, onClose, onSalvar }: Pr
                     </div>
                     <form onSubmit={handleSubmit}>
                         <div className="modal-body d-flex flex-column gap-2">
-                            <small className="text-muted">Cliente ID</small>
-                            <input className="form-control" placeholder="Cliente ID *" type="number" required
+                            <small className="text-muted">Cliente ID <span className="text-danger">*</span></small>
+                            <input className="form-control" placeholder="Cliente ID" type="number" required
                                 value={form.clienteId ?? ''}
                                 onChange={e => setForm({ ...form, clienteId: Number(e.target.value) })} />
                                 <small className="text-muted">Desconto</small>
@@ -66,7 +66,7 @@ export default function AdicionarOrcamentos({ orcamento, onClose, onSalvar }: Pr
                             <input className="form-control" placeholder="Observações"
                                 value={form.observacoes}
                                 onChange={e => setForm({ ...form, observacoes: e.target.value })} />
-                            <small className="text-muted">Situação</small>
+                            <small className="text-muted">Situação <span className="text-danger">*</span></small>
                             <select className="form-select" value={form.situacao}
                                 onChange={e => setForm({ ...form, situacao: e.target.value as Orcamento['situacao'] })}>
                                 <option value="pendente">Pendente</option>
