@@ -5,17 +5,21 @@ import { Orcamento } from '@/types/orcamentos'
 import { createOrcamento} from '@/app/(system)/orcamento/actions'
 import AdicionarEditarOrcamentos from './AdicionarOrcamentos'
 import { notify } from '../Notify'
+import { Cliente } from '@/types/clientes'
+import AdicionarOrcamentos from './AdicionarOrcamentos'
 
 
 
 interface Props {
     orcamentos: Orcamento[]
+    clientes: Cliente[]
 }
 
-export default function ListaOrcamentos({ orcamentos }: Props) {
+export default function ListaOrcamentos({ orcamentos, clientes }: Props) {
     const [modalAberto, setModalAberto] = useState(false)
     const [orcamentoSelecionado, setOrcamentoSelecionado] = useState<Orcamento | null>(null)
     const router = useRouter()
+
 
     function abrirParaCriar() {
         setOrcamentoSelecionado(null)
@@ -62,6 +66,7 @@ export default function ListaOrcamentos({ orcamentos }: Props) {
                     orcamento={orcamentoSelecionado ?? undefined}
                     onClose={fecharModal}
                     onSalvar={handleSalvar}
+                    clientes={clientes}
                 />
             )}
         </div>

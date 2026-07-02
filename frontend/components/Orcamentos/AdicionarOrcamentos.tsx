@@ -1,14 +1,16 @@
 'use client'
 import { useState } from 'react'
 import { Orcamento, ItemOrcamento } from '@/types/orcamentos'
+import { Cliente } from '@/types/clientes'
 
 interface Props {
     orcamento?: Orcamento
     onClose: () => void
     onSalvar: (form: Orcamento) => Promise<void>
+    clientes: Cliente[]
 }
 
-export default function AdicionarOrcamentos({ orcamento, onClose, onSalvar }: Props) {
+export default function AdicionarOrcamentos({ orcamento, onClose, onSalvar, clientes }: Props) {
     const [form, setForm] = useState<Orcamento>({
         clienteId: orcamento?.clienteId ?? undefined,
         valorDesconto: orcamento?.valorDesconto ?? 0,
@@ -51,14 +53,19 @@ export default function AdicionarOrcamentos({ orcamento, onClose, onSalvar }: Pr
                     <form onSubmit={handleSubmit}>
                         <div className="modal-body d-flex flex-column gap-2">
                             <small className="text-muted">Cliente ID <span className="text-danger">*</span></small>
-                            <input className="form-control" placeholder="Cliente ID" type="number" required
+                            <select className="form-select" required
                                 value={form.clienteId ?? ''}
-                                onChange={e => setForm({ ...form, clienteId: Number(e.target.value) })} />
-                                <small className="text-muted">Desconto</small>
+                                onChange={e => setForm({ ...form, clienteId: Number(e.target.value) })}>
+                                <option value="">Selecione um cliente *</option>
+                                {clientes.map(c => (
+                                    <option key={c.id} value={c.id}>{c.nome}</option>
+                                ))}
+                            </select>
+                            <small className="text-muted">Desconto</small>
                             <input className="form-control" placeholder="Desconto" type="number" step="0.01"
                                 value={form.valorDesconto}
                                 onChange={e => setForm({ ...form, valorDesconto: Number(e.target.value) })} />
-                                <small className="text-muted">Válido até</small>
+                            <small className="text-muted">Válido até</small>
                             <input className="form-control" placeholder="Válido até" type="date"
                                 value={form.validoAte}
                                 onChange={e => setForm({ ...form, validoAte: e.target.value })} />
