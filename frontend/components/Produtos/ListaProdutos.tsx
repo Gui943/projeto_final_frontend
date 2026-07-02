@@ -4,6 +4,7 @@ import { Produto } from '@/types/produtos'
 import AdicionarEditarProduto from './AdicionarEditarProduto'
 import { createProduto, updateProduto, deleteProduto } from '@/app/(system)/produto/actions'
 import { useRouter } from 'next/navigation'
+import {notify} from '@/components/Notify'
 
 
 interface Props {
@@ -33,8 +34,10 @@ export default function ListaProdutos({ produtos }: Props) {
   async function handleSalvar(form: Produto) {
     if (produtoSelecionado?.id) {
       await updateProduto(produtoSelecionado.id, form)
+      notify('Produto atualizado com sucesso!', 'success')
     } else {
       await createProduto(form)
+      notify('Produto criado com sucesso!', 'success')
     }
     router.refresh()
   }
@@ -42,6 +45,7 @@ export default function ListaProdutos({ produtos }: Props) {
   async function handleExcluir(id: number) {
   if (confirm('Deseja excluir este produto?')) {
     await deleteProduto(id)
+    notify('Produto excluído com sucesso!', 'success')
   }
   router.refresh()
 }

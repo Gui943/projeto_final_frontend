@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { Orcamento } from '@/types/orcamentos'
 import { createOrcamento} from '@/app/(system)/orcamento/actions'
 import AdicionarEditarOrcamentos from './AdicionarOrcamentos'
+import { notify } from '../Notify'
 
 
 
@@ -27,9 +28,8 @@ export default function ListaOrcamentos({ orcamentos }: Props) {
     }
 
     async function handleSalvar(form: Orcamento) {
-          console.log('salvando', form)
         const result = await createOrcamento(form)
-          console.log('resultado', result)
+        notify('Orcamento criado com sucesso!', 'success')
         router.refresh()
     }
     

@@ -21,12 +21,10 @@ export default function Navbar() {
                             <li className="nav-item">
                                 <Link className="nav-link active" href="/orcamento">Orçamentos</Link>
                             </li>
-                            <li className="nav-item">
-                                <form action={logout} className="ms-auto">
-                                    <button type="submit" className="btn btn-outline-danger">Sair</button>
-                                </form>
-                            </li>
                         </ul>
+                        <form action={logout} className="ms-auto">
+                            <button type="submit" className="btn btn-outline-danger">Sair</button>
+                        </form>
                     </div>
                 </div>
             </nav>

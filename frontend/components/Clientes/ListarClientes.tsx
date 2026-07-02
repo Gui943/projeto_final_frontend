@@ -4,6 +4,7 @@ import { Cliente } from '@/types/clientes'
 import AdicionarEditarClientes from './AdicionarEditarClientes'
 import { createCliente, updateCliente, deleteCliente } from '@/app/(system)/cliente/actions'
 import { useRouter } from 'next/navigation'
+import { notify } from '../Notify'
 
 
 interface Props {
@@ -33,8 +34,10 @@ export default function ListaClientes({ clientes }: Props) {
     async function handleSalvar(form: Cliente) {
         if (clienteSelecionado?.id) {
             const result = await updateCliente(clienteSelecionado.id, form)
+            notify('Cliente atualizado com sucesso!', 'success')
         } else {
             const result = await createCliente(form)
+            notify('Cliente criado com sucesso!', 'success')
         }
         router.refresh()
     }
@@ -42,6 +45,7 @@ export default function ListaClientes({ clientes }: Props) {
     async function handleExcluir(id: number) {
         if (confirm('Deseja excluir este cliente?')) {
             await deleteCliente(id)
+            notify('Cliente excluído com sucesso!', 'success')
         }
         router.refresh()
     }
