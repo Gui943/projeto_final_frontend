@@ -1,5 +1,11 @@
-export default function Cliente(){
+import { Cliente } from "@/types/clientes"
+import { getClientes } from "./actions"
+import ListaClientes from "@/components/Clientes/ListarClientes"
+
+export default async function Clientepage(){
+    const clientes: Cliente[] = await getClientes()
     return (
-        <h1>Pagina de clientes</h1>
+   
+        <ListaClientes clientes={clientes} />
     )
 }

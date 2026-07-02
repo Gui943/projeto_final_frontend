@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Produto } from '@/types/produtos'
 import AdicionarEditarProduto from './AdicionarEditarProduto'
 import { createProduto, updateProduto, deleteProduto } from '@/app/(system)/produto/actions'
+import { useRouter } from 'next/navigation'
 
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 export default function ListaProdutos({ produtos }: Props) {
   const [modalAberto, setModalAberto] = useState(false)
   const [produtoSelecionado, setProdutoSelecionado] = useState<Produto | null>(null)
+  const router = useRouter()
 
   function abrirParaCriar() {
     setProdutoSelecionado(null)
@@ -34,12 +36,14 @@ export default function ListaProdutos({ produtos }: Props) {
     } else {
       await createProduto(form)
     }
+    router.refresh()
   }
 
   async function handleExcluir(id: number) {
   if (confirm('Deseja excluir este produto?')) {
     await deleteProduto(id)
   }
+  router.refresh()
 }
 
   return (
