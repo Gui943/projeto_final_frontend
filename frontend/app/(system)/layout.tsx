@@ -23,7 +23,9 @@ export default function SystemLayout({
   return (
     <div className="d-flex flex-column min-vh-100">
     <Navbar />
-      <main>{children}</main>
+      <main className="flex-grow-1">
+        {children}
+      </main>
       {<Footer />}
     </div>
   );
