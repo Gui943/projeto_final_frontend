@@ -3,7 +3,7 @@ import { logout } from "@/app/(auth)/logout/actions";
 export default function Navbar() {
     return (
         <div>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <nav className="navbar navbar-expand-lg navbar-dark">
                 <div className="container-fluid">
                     <Link className="navbar-brand" href="/home">SENAC ORÇAMENTOS</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -23,7 +23,7 @@ export default function Navbar() {
                             </li>
                         </ul>
                         <form action={logout} className="ms-auto">
-                            <button type="submit" className="btn btn-outline-danger">Sair</button>
+                            <button type="submit" className="btn btn-danger me-2">Sair</button>
                         </form>
                     </div>
                 </div>

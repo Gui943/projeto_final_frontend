@@ -42,7 +42,7 @@ export default function ListaOrcamentos({ orcamentos }: Props) {
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th>Id</th><th>ClienteId</th><th>Situação</th><th>Total</th><th>Valido Até</th><th>Ações</th>
+                        <th>Id</th><th>ClienteId</th><th>Situação</th><th>Total</th><th>Valido Até</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -13,3 +13,21 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
 /* Escreva seus estilos globais abaixo */
+
+.navbar {
+  background-color:#0d3b66 !important;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: #ffffff !important;
+}
+
+.navbar .nav-link:hover {
+  color: #a0c4ff !important;
+}
+
+footer {
+  background-color: #0d3b66 !important;
+  color: #ffffff !important;
+}
